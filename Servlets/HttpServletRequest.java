@@ -37,4 +37,12 @@ public class HttpServletRequest {
    public byte[] getFileByteCode(){
       return fileByteCode;
    }
+
+   public void parseRequests(InputStream inStream){
+      String byteCode = "";
+      Scanner scanner = new Scanner(inStream);
+
+      requestType = scanner.next();
+
+   }
 }
