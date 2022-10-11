@@ -11,16 +11,6 @@ public class UploadServerThread extends Thread {
    }
 
    public void run() {
-      try {
-         InputStream in = socket.getInputStream();  //Post or Get as first
-         HttpServletRequest req = new HttpServletRequest(in);  
-         OutputStream baos = new ByteArrayOutputStream(); 
-         HttpServletResponse res = new HttpServletResponse((ByteArrayOutputStream) baos);
-         HttpServlet httpServlet = new UploadServlet();
-         httpServlet.doPost(req, res);
-         OutputStream out = socket.getOutputStream(); 
-         out.write(((ByteArrayOutputStream) baos).toByteArray());
-         socket.close();
-      } catch (Exception e) { e.printStackTrace(); }
+      System.out.println("Running thread");
    }
 }

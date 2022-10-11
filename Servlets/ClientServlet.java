@@ -32,14 +32,14 @@ public class ClientServlet extends HttpServlet{
             writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
             writer.append("\r\n").append(fileDate).append("\r\n").flush();
             writer.append("-----------------------------------------\r\n");
-            writer.append("Content-Disposition: form-data; name=\"Caption\"\\r\n");
+            writer.append("Content-Disposition: form-data; name=\"Keyword\"\\r\n");
             writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
-            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            writer.append("\r\n").append(keyWord).append("\r\n").flush();
             writer.append("-----------------------------------------\r\n");
             writer.append("-----------------------------------------\r\n");
-            writer.append("Content-Disposition: form-data; name=\"Caption\"\\r\n");
+            writer.append("Content-Disposition: form-data; name=\"Captions\"\\r\n");
             writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
-            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            writer.append("\r\n").append(captions).append("\r\n").flush();
             writer.append("-----------------------------------------\r\n");
             writer.append("Content-Disposition: form-data; name=\"File\"; filename=\"" + file.getFileName() + "\\r\n");
             writer.append("Content-Type: image/png; charset=" + "\r\n");
