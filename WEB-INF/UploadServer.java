@@ -5,7 +5,6 @@ public class UploadServer {
         ServerSocket serverSocket = null;
         final int portNumber = 4999;
 
-
         try {
             serverSocket = new ServerSocket(portNumber);
             // PrintWriter toServerPrintWriter= new PrintWriter(socket.getOutputStream());
@@ -18,12 +17,12 @@ public class UploadServer {
         while (true) {
             // new UploadServerThread(serverSocket.accept()).start();
             Socket client = serverSocket.accept();
-            final InputStream inputStream = client.getInputStream();
-            final OutputStream outputStream = client.getOutputStream();
+            // final InputStream inputStream = client.getInputStream();
+            // final OutputStream outputStream = client.getOutputStream();
             UploadServerThread clientUploadServerThread = new UploadServerThread(client);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             clientUploadServerThread.start();
             System.out.println("New client");
-
         }
     }
 }

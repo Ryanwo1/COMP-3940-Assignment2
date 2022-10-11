@@ -17,13 +17,13 @@ public class UploadServerThread extends Thread {
          HttpServletRequest req = new HttpServletRequest(in);  
          OutputStream baos = new ByteArrayOutputStream();
          // Diagnostic. Delete after
-         System.out.println(baos.toString());
-         HttpServletResponse res = new HttpServletResponse(baos); 
+         HttpServletResponse res = new HttpServletResponse(baos);
          HttpServlet httpServlet = new UploadServlet();
          httpServlet.doPost(req, res);
-         OutputStream out = socket.getOutputStream(); 
+         OutputStream out = socket.getOutputStream();
          out.write(((ByteArrayOutputStream) baos).toByteArray());
          socket.close();
+
       } catch (Exception e) { e.printStackTrace(); }
    }
 }

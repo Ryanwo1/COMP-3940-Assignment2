@@ -4,12 +4,15 @@ public class UploadServlet extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
       try {
          InputStream in = request.getInputStream();   
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
          byte[] content = new byte[1];
          int bytesRead = -1;      
          while( ( bytesRead = in.read( content ) ) != -1 ) {  
             baos.write( content, 0, bytesRead );  
          }
+         System.out.println("This is the ByteArrayOutputStream: ");
+         System.out.println(baos.toString());
          Clock clock = Clock.systemDefaultZone();
          long milliSeconds=clock.millis();
          OutputStream outputStream = new FileOutputStream(new File(String.valueOf(milliSeconds) + ".png"));
