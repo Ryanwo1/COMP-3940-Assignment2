@@ -16,7 +16,6 @@ public class UploadServerThread extends Thread {
          InputStream in = socket.getInputStream();
          HttpServletRequest req = new HttpServletRequest(in);  
          OutputStream baos = new ByteArrayOutputStream();
-         // Diagnostic. Delete after
          HttpServletResponse res = new HttpServletResponse(baos);
          HttpServlet httpServlet = new UploadServlet();
          httpServlet.doPost(req, res);

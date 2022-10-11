@@ -20,7 +20,6 @@ public class UploadServer {
             // final InputStream inputStream = client.getInputStream();
             // final OutputStream outputStream = client.getOutputStream();
             UploadServerThread clientUploadServerThread = new UploadServerThread(client);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             clientUploadServerThread.start();
             System.out.println("New client");
         }
