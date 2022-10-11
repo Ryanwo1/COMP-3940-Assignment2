@@ -1,3 +1,5 @@
+package Servlets;
+
 import java.io.*;
 public class HttpServletRequest {
    private InputStream inputStream = null;

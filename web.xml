@@ -23,7 +23,7 @@
 
   <servlet>
     <servlet-name>uploadConsole</servlet-name>
-    <servlet-class>UploadServlet</servlet-class>
+    <servlet-class>Servlets.UploadServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

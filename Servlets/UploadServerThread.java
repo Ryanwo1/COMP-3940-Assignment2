@@ -1,18 +1,21 @@
+package Servlets;
+
 import java.net.*;
 import java.io.*;
-import java.time.Clock;
+
 public class UploadServerThread extends Thread {
    private Socket socket = null;
    public UploadServerThread(Socket socket) {
-      super("DirServerThread");
+      //super("DirServerThread");
       this.socket = socket;
    }
+
    public void run() {
       try {
-         InputStream in = socket.getInputStream(); 
+         InputStream in = socket.getInputStream();  //Post or Get as first
          HttpServletRequest req = new HttpServletRequest(in);  
          OutputStream baos = new ByteArrayOutputStream(); 
-         HttpServletResponse res = new HttpServletResponse(baos); 
+         HttpServletResponse res = new HttpServletResponse((ByteArrayOutputStream) baos);
          HttpServlet httpServlet = new UploadServlet();
          httpServlet.doPost(req, res);
          OutputStream out = socket.getOutputStream(); 
