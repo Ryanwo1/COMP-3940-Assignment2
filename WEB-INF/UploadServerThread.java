@@ -9,9 +9,15 @@ public class UploadServerThread extends Thread {
    }
    public void run() {
       try {
-         InputStream in = socket.getInputStream(); 
+         // Diagnostic. Delete after
+         System.out.println("The run function runs");
+         // Takes data in, writes it out
+
+         InputStream in = socket.getInputStream();
          HttpServletRequest req = new HttpServletRequest(in);  
-         OutputStream baos = new ByteArrayOutputStream(); 
+         OutputStream baos = new ByteArrayOutputStream();
+         // Diagnostic. Delete after
+         System.out.println(baos.toString());
          HttpServletResponse res = new HttpServletResponse(baos); 
          HttpServlet httpServlet = new UploadServlet();
          httpServlet.doPost(req, res);

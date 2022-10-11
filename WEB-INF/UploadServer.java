@@ -16,7 +16,12 @@ public class UploadServer {
             System.exit(-1);
         }
         while (true) {
-            new UploadServerThread(serverSocket.accept()).start();
+            // new UploadServerThread(serverSocket.accept()).start();
+            Socket client = serverSocket.accept();
+            final InputStream inputStream = client.getInputStream();
+            final OutputStream outputStream = client.getOutputStream();
+            UploadServerThread clientUploadServerThread = new UploadServerThread(client);
+            clientUploadServerThread.start();
             System.out.println("New client");
 
         }
