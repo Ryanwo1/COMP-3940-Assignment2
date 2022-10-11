@@ -2,6 +2,7 @@ package Servlets;
 
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.*;
@@ -17,13 +18,37 @@ public class ClientServlet extends HttpServlet{
 
     public void POSTReq(){
         BufferedReader reader = null;
-        String charset = "UTF-8";
         Path file = Paths.get(filePath);
 
         try{
             Socket serverSocket = new Socket(serverName, portNum);
             OutputStream outputStream = serverSocket.getOutputStream();
-            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, charset));
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            writer.append("POST/HTTP/1.1\r\n");
+            writer.append("Content-Type: multipart/form-data;\r\n");
+            writer.append("User: Client\r\n\r\n").flush();
+            writer.append("----------------------------------------\r\n");
+            writer.append("Content-Disposition: form-data; name=\"Date and Time\"\\r\n");
+            writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
+            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            writer.append("-----------------------------------------\r\n");
+            writer.append("Content-Disposition: form-data; name=\"Caption\"\\r\n");
+            writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
+            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            writer.append("-----------------------------------------\r\n");
+            writer.append("-----------------------------------------\r\n");
+            writer.append("Content-Disposition: form-data; name=\"Caption\"\\r\n");
+            writer.append("Content-Type: text/plain; charset=" + "UTF-8\r\n");
+            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            writer.append("-----------------------------------------\r\n");
+            writer.append("Content-Disposition: form-data; name=\"File\"; filename=\"" + file.getFileName() + "\\r\n");
+            writer.append("Content-Type: image/png; charset=" + "\r\n");
+            writer.append("Content-Encoding: binary" + "\r\n");
+            writer.append("\r\n").append(fileDate).append("\r\n").flush();
+            Files.copy(file, outputStream);
+            outputStream.flush();
+            writer.append("\r\n").flush();
+            writer.append("-----------------------------------------\r\n").flush();
 
             BufferedReader response = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
             serverSocket.close();
