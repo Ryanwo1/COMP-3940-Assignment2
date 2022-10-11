@@ -12,7 +12,6 @@ public class UploadServerThread extends Thread {
          // Diagnostic. Delete after
          System.out.println("The run function runs");
          // Takes data in, writes it out
-
          InputStream in = socket.getInputStream();
          HttpServletRequest req = new HttpServletRequest(in);  
          OutputStream baos = new ByteArrayOutputStream();
